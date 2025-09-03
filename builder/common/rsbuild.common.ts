@@ -1,19 +1,22 @@
-import { defineConfig } from '@rsbuild/core';
-import { join } from 'path';
-import { rootPath, srcPath } from './paths';
+import { defineConfig } from "@rsbuild/core";
+import { join } from "path";
+import { rootPath, srcPath } from "./paths";
 
 const CommonConfig = defineConfig({
-  source: {
-    alias: {
-      '@/src': join(rootPath, './src/'),
-      '@/components': join(rootPath, './src/render/components/'),
-      '@/types': join(rootPath, './types/'),
-      '@/resources': join(rootPath, './resources/'),
-      '@/constant': join(rootPath, './constant/'),
-      '@/render': join(srcPath, './render/'),
-    },
-
-  },
+	resolve: {
+		alias: {
+			"@/src": join(rootPath, "./src/"),
+			"@/main": join(srcPath, "./main/"),
+			"@/render": join(srcPath, "./render/"),
+			"@/components": join(srcPath, "./render/components/"),
+			"@/domains": join(srcPath, "./domains/"),
+		},
+	},
+	source: {
+		decorators: {
+			version: "legacy",
+		},
+	},
 });
 
 export default CommonConfig;
